@@ -27,14 +27,18 @@ class Animal
     animals = []
     returned_animals.each() do |item|
       animal_name = item.fetch("animal_name")
-      gender = gender.fetch("gender")
-      animal_breed = animal_breed.fetch("animal_breed")
-      date = date.fetch("date")
-      animal_type = animal_type.fetch("animal_type")
+      gender = item.fetch("gender")
+      animal_breed = item.fetch("animal_breed")
+      date = item.fetch("date")
+      animal_type = item.fetch("animal_type")
       customer_id = item.fetch("customer_id").to_i() # The information comes out of the database as a string.
       animals.push(Animal.new({:animal_name => animal_name, :gender => gender, :animal_breed => animal_breed, :date => date, :animal_type => animal_type, :customer_id => customer_id}))
     end
     animals
+  end
+
+  def save
+    DB.exec("INSERT INTO animal (animal_name, gender, animal_breed, date, animal_type, customer_id) VALUES ('#{@animal_name}', '#{@gender}', '#{@animal_breed}', '#{@date}', '#{@animal_type}', #{@customer_id});")
   end
 
   def populate_list

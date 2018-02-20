@@ -16,5 +16,14 @@ describe(Animal) do
     it('empty at first, will populate later.') do
       expect(Animal.all()).to(eq([]))
     end
-  end
+  end #all
+
+  describe('#save') do
+    it('adds animal to an array of animals') do
+      first_animal = Animal.new({:animal_name => 'Scrappy', :gender => 'female', :animal_breed => 'mixed', :date => '2018-05-01', :animal_type => 'dog', :customer_id => 1})
+      first_animal.save
+      expect(Animal.all()).to(eq([first_animal]))
+    end
+  end # save
+
 end #Animal
