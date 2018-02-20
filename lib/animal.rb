@@ -1,5 +1,6 @@
 class Animal
-  @@animal_list = []
+
+  attr_reader(:animal_name, :date, :customer_id, :gender, :animal_breed, :animal_type)
 
   def initialize(attributes)
     @animal_name = attributes.fetch(:animal_name)
@@ -41,17 +42,5 @@ class Animal
     DB.exec("INSERT INTO animal (animal_name, gender, animal_breed, date, animal_type, customer_id) VALUES ('#{@animal_name}', '#{@gender}', '#{@animal_breed}', '#{@date}', '#{@animal_type}', #{@customer_id});")
   end
 
-  def populate_list
-    if (self.term)
-      @@list.push(self)
-    end
-  end
 
-  def self.list
-    @@list
-  end
-
-  def self.clear
-    @@list.clear
-  end
 end
