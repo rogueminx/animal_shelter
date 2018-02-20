@@ -11,7 +11,15 @@ class Animal
   end
 
   def ==(another_pet)
+    self.animal_name().==(another_pet.animal_name()).&(self.customer_id().==(another_pet.customer_id()))
+  end
 
+  def animal_name
+    @name
+  end
+
+  def customer_id
+    @customer_id
   end
 
   def populate_list
