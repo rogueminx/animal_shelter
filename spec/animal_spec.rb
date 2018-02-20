@@ -11,4 +11,10 @@ describe(Animal) do
       expect(one).to(eq(two))
     end
   end # ==
+
+  describe('.all') do
+    it('empty at first, will populate later.') do
+      expect(Animal.all()).to(eq([]))
+    end
+  end
 end #Animal

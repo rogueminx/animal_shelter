@@ -22,6 +22,21 @@ class Animal
     @customer_id
   end
 
+  def self.all()
+    returned_animals = DB.exec("SELECT * FROM animal;")
+    animals = []
+    returned_animals.each() do |item|
+      animal_name = item.fetch("animal_name")
+      gender = gender.fetch("gender")
+      animal_breed = animal_breed.fetch("animal_breed")
+      date = date.fetch("date")
+      animal_type = animal_type.fetch("animal_type")
+      customer_id = item.fetch("customer_id").to_i() # The information comes out of the database as a string.
+      animals.push(Animal.new({:animal_name => animal_name, :gender => gender, :animal_breed => animal_breed, :date => date, :animal_type => animal_type, :customer_id => customer_id}))
+    end
+    animals
+  end
+
   def populate_list
     if (self.term)
       @@list.push(self)
