@@ -12,7 +12,7 @@ class Animal
   end
 
   def ==(another_pet)
-    self.animal_name().==(another_pet.animal_name()).&(self.customer_id().==(another_pet.customer_id()))
+    self.animal_breed().==(another_pet.animal_breed()).&(self.customer_id().==(another_pet.customer_id()))
   end
 
   def animal_name
@@ -42,5 +42,10 @@ class Animal
     DB.exec("INSERT INTO animal (animal_name, gender, animal_breed, date, animal_type, customer_id) VALUES ('#{@animal_name}', '#{@gender}', '#{@animal_breed}', '#{@date}', '#{@animal_type}', #{@customer_id});")
   end
 
+  def self.sort_breed(breed)
+    @breed = breed
+    # binding.pry
+    DB.exec("SELECT animal_breed FROM animal WHERE animal_breed = 'husky';")
+  end
 
 end
