@@ -33,7 +33,7 @@ describe(Animal) do
       first_animal.save
       second_animal = Animal.new({:animal_name => 'Rock', :gender => 'male', :animal_breed => 'husky', :date => '2018-01-12', :animal_type => 'dog', :customer_id => 1})
       second_animal.save
-      expect(Animal.sort_breed('husky')).to(eq([second_animal]))
+      expect(Animal.sort_breed('husky')).to(eq([["Rock", "male", "husky"]]))
     end
   end # save
 

@@ -44,8 +44,16 @@ class Animal
 
   def self.sort_breed(breed)
     @breed = breed
-    # binding.pry
-    DB.exec("SELECT animal_breed FROM animal WHERE animal_breed = 'husky';")
+    return_array = []
+    return_values = DB.exec("SELECT animal_name, gender, animal_breed FROM animal WHERE animal_breed = 'husky';").values
+    return_values.each() do |item|
+      animal_name = item.fetch("animal_name")
+      gender = item.fetch("gender")
+      animal_breed = item.fetch("animal_breed")
+
+    return_array.push(animal_name, gender, animal_breed)
+    end
+    return_array
   end
 
 end
