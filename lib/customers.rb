@@ -12,16 +12,15 @@ class Customers
   end
 
   def ==(another_customer)
-    self.customer_name().==(another_customer.customer_name()).&(self.id().==(another_customer.id()))
+    self.customer_name().==(another_customer.customer_name()).&(self.id().==(another_customer.id())).&(self.phone().==(another_customer.phone())).&(self.animal_type_preference().==(another_customer.animal_type_preference())).&(self.breed_preference().==(another_customer.breed_preference()))
   end
 
-  def customer_name
-    @customer_name
-  end
-
-  def id
-    @id
-  end
+  def save
+    result = DB.exec("INSERT INTO customers(customer_name, phone, animal_type_preference, breed_preference) VALUES ('#{@customer_name}', '#{@phone}', '#{@animal_type_preference}', '#{@breed_preference}') RETURNING id;")
+    @id = result.first().fetch("id").to_i()
+  end #save
+  #We can insert a record into the database and have the ID of that new entry be returned to us by adding RETURNING id to the end of our INSERT command.
+  #The pg gem always returns information in an array (technically it's not an array but it behaves more or less like one). When we save a list and want to get its ID, we have to use the first() method to take it out of the array. Then we can use the fetch method to select the ID.
 
   def self.all()
     returned_customers = DB.exec("SELECT * FROM customers;")
@@ -37,10 +36,8 @@ class Customers
     customers
   end #all
 
-  def save
-    result = DB.exec("INSERT INTO customers(customer_name, phone, animal_type_preference, breed_preference, id) VALUES ('#{@customer_name}', '#{@phone}', '#{@animal_type_preference}', '#{@breed_preference}', #{@id}) RETURNING id;")
-    @id = result.first().fetch("id").to_i()
-  end #save
-  #We can insert a record into the database and have the ID of that new entry be returned to us by adding RETURNING id to the end of our INSERT command.
-  #The pg gem always returns information in an array (technically it's not an array but it behaves more or less like one). When we save a list and want to get its ID, we have to use the first() method to take it out of the array. Then we can use the fetch method to select the ID.
+  def breed_preference(preference)
+
+  end
+
 end #Customer

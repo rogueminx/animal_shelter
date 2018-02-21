@@ -31,7 +31,7 @@ describe(Animal) do
     it("sets its ID when you save it") do
       animal_one = Animal.new({:animal_name => 'Scrappy', :gender => 'female', :animal_breed => 'mixed', :date => '2018-05-01', :animal_type => 'dog', :id => nil})
       animal_one.save()
-      expect(animal_one.id()).to(be_an_instance_of(Fixnum)) # don't know what specific ID the database will assign it, so all we can do is check to make sure the ID is an Integer. Works together with the save method.
+      expect(animal_one.id()).to(be_an_instance_of(Fixnum)) # don't know what specific ID the database will assign it, so all we can do is check to make sure the ID is an Integer/Fixnum(at home). Works together with the save method.
     end
   end
 
@@ -80,6 +80,5 @@ describe(Animal) do
         expect(third_animal.sort_arrival()).to(eq([second_animal, third_animal, first_animal]))
       end
     end #sort_arrival
-
 
 end #Animal

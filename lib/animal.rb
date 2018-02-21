@@ -22,14 +22,6 @@ class Animal
   #We can insert a record into the database and have the ID of that new entry be returned to us by adding RETURNING id to the end of our INSERT command.
   #The pg gem always returns information in an array (technically it's not an array but it behaves more or less like one). When we save a list and want to get its ID, we have to use the first() method to take it out of the array. Then we can use the fetch method to select the ID.
 
-  def animal_name
-    @animal_name
-  end
-
-  def id
-    @id
-  end
-
   def self.all()
     returned_animals = DB.exec("SELECT * FROM animal;")
     animals = []
