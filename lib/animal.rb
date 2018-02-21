@@ -100,4 +100,8 @@ class Animal
     returned_animals
   end # sort_arrival
 
+  def adopted_by(customer_id)
+
+  end
+
 end # ANIMAL

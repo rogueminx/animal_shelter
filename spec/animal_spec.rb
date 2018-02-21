@@ -81,4 +81,12 @@ describe(Animal) do
       end
     end #sort_arrival
 
+    describe('#adopted_by') do
+      it('adds the relevant customer id to an animal when adopted.') do
+        first_animal = Animal.new({:animal_name => 'Scrappy', :gender => 'female', :animal_breed => 'mixed', :date => '2018-02-14', :animal_type => 'dog', :id => nil})
+        first_animal.save
+        expect(first_animal.adopted_by(22)).to(eq({:animal_name => 'Scrappy', :gender => 'female', :animal_breed => 'mixed', :date => '2018-02-14', :animal_type => 'dog', :id => nil, :customer_id => 22}))
+      end
+    end #adopted_by
+
 end #Animal
