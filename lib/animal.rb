@@ -46,9 +46,9 @@ class Animal
   end #all
 
   def sort_type(type)
-    @animal_type = type
+    @type = type
     returned_animals = []
-    all_animals = DB.exec("SELECT * FROM animal WHERE animal_type = '#{@animal_type}';")
+    all_animals = DB.exec("SELECT * FROM animal WHERE animal_type = '#{@type}';")
     all_animals.each() do |item|
       animal_name = item.fetch("animal_name")
       gender = item.fetch("gender")
@@ -63,21 +63,19 @@ class Animal
 
 
   def sort_breed(breed)
-    # @breed = breed
-    # return_array = []
-    # return_values = DB.exec("SELECT id FROM animal WHERE animal_breed = '#{@breed}';").values
-    # @id = return_values.first().fetch("id").to_i()
-    # return_values.each() do |item|
-    #   return_array.push(@id)
-    # end
-    # return_values.each() do |item|
-    #   animal_name = item.fetch("animal_name")
-    #   gender = item.fetch("gender")
-    #   animal_breed = item.fetch("animal_breed")
-    #
-    # return_array.push(animal_name, gender, animal_breed)
-    # end
-    # return_array
+    @breed = breed
+    returned_animals = []
+    all_animals = DB.exec("SELECT * FROM animal WHERE animal_breed = '#{@breed}';")
+    all_animals.each() do |item|
+      animal_name = item.fetch("animal_name")
+      gender = item.fetch("gender")
+      animal_breed = item.fetch("animal_breed")
+      date = item.fetch("date")
+      animal_type = item.fetch("animal_type")
+      id = item.fetch("id").to_i()
+      returned_animals.push(Animal.new({:animal_name => animal_name, :gender => gender, :animal_breed => animal_breed, :date => date, :animal_type => animal_type, :id => id}))
+    end
+    returned_animals
   end # sort_breed
 
 end # ANIMAL
