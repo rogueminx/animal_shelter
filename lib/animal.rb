@@ -78,4 +78,20 @@ class Animal
     returned_animals
   end # sort_breed
 
+  def sort_az()
+    # @breed = breed
+    # returned_animals = []
+    # all_animals = DB.exec("SELECT * FROM animal WHERE animal_breed = '#{@breed}';")
+    # all_animals.each() do |item|
+    #   animal_name = item.fetch("animal_name")
+    #   gender = item.fetch("gender")
+    #   animal_breed = item.fetch("animal_breed")
+    #   date = item.fetch("date")
+    #   animal_type = item.fetch("animal_type")
+    #   id = item.fetch("id").to_i()
+    #   returned_animals.push(Animal.new({:animal_name => animal_name, :gender => gender, :animal_breed => animal_breed, :date => date, :animal_type => animal_type, :id => id}))
+    # end
+    # returned_animals
+  end # sort_breed
+
 end # ANIMAL

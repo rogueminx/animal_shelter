@@ -55,7 +55,19 @@ describe(Animal) do
       second_animal.save
       expect(second_animal.sort_breed('husky')).to(eq([second_animal]))
     end
-  end
+  end #sort_breed
+
+    describe('.sort_az') do
+      it('returns a list of animals by name A-Z ') do
+        first_animal = Animal.new({:animal_name => 'Scrappy', :gender => 'female', :animal_breed => 'mixed', :date => '2018-05-01', :animal_type => 'dog', :id => nil})
+        first_animal.save
+        second_animal = Animal.new({:animal_name => 'Rock', :gender => 'male', :animal_breed => 'husky', :date => '2018-01-12', :animal_type => 'dog', :id => nil})
+        second_animal.save
+        third = Animal.new({:animal_name => 'Banana', :gender => 'female', :animal_breed => 'Paint', :date => '2018-02-14', :animal_type => 'horse', :id => nil})
+        third_animal.save
+        expect(third_animal.sort_az()).to(eq([third_animal],[second_animal],[fifirst_animal]))
+      end
+    end #sort_breed
 
 
 end #Animal
