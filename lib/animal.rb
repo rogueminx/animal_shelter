@@ -79,7 +79,6 @@ class Animal
   end # sort_breed
 
   def sort_az()
-    # @breed = breed
     # returned_animals = []
     # all_animals = DB.exec("SELECT * FROM animal WHERE animal_breed = '#{@breed}';")
     # all_animals.each() do |item|

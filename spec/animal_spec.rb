@@ -63,9 +63,9 @@ describe(Animal) do
         first_animal.save
         second_animal = Animal.new({:animal_name => 'Rock', :gender => 'male', :animal_breed => 'husky', :date => '2018-01-12', :animal_type => 'dog', :id => nil})
         second_animal.save
-        third = Animal.new({:animal_name => 'Banana', :gender => 'female', :animal_breed => 'Paint', :date => '2018-02-14', :animal_type => 'horse', :id => nil})
+        third_animal = Animal.new({:animal_name => 'Banana', :gender => 'female', :animal_breed => 'Paint', :date => '2018-02-14', :animal_type => 'horse', :id => nil})
         third_animal.save
-        expect(third_animal.sort_az()).to(eq([third_animal],[second_animal],[fifirst_animal]))
+        expect(third_animal.sort_az()).to(eq([third_animal,second_animal,first_animal]))
       end
     end #sort_breed
 
