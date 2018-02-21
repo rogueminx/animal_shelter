@@ -58,27 +58,26 @@ class Animal
       id = item.fetch("id").to_i()
       returned_animals.push(Animal.new({:animal_name => animal_name, :gender => gender, :animal_breed => animal_breed, :date => date, :animal_type => animal_type, :id => id}))
     end
-    binding.pry
     returned_animals
   end #sort_type
 
-  #
-  # def self.sort_breed(breed)
-  #   @breed = breed
-  #   return_array = []
-  #   return_values = DB.exec("SELECT id FROM animal WHERE animal_breed = '#{@breed}';").values
-  #   @id = return_values.first().fetch("id").to_i()
-  #   return_values.each() do |item|
-  #     return_array.push(@id)
-  #   end
-  #   # return_values.each() do |item|
-  #   #   animal_name = item.fetch("animal_name")
-  #   #   gender = item.fetch("gender")
-  #   #   animal_breed = item.fetch("animal_breed")
-  #   #
-  #   # return_array.push(animal_name, gender, animal_breed)
-  #   # end
-  #   # return_array
-  # end # sort_breed
+
+  def sort_breed(breed)
+    # @breed = breed
+    # return_array = []
+    # return_values = DB.exec("SELECT id FROM animal WHERE animal_breed = '#{@breed}';").values
+    # @id = return_values.first().fetch("id").to_i()
+    # return_values.each() do |item|
+    #   return_array.push(@id)
+    # end
+    # return_values.each() do |item|
+    #   animal_name = item.fetch("animal_name")
+    #   gender = item.fetch("gender")
+    #   animal_breed = item.fetch("animal_breed")
+    #
+    # return_array.push(animal_name, gender, animal_breed)
+    # end
+    # return_array
+  end # sort_breed
 
 end # ANIMAL

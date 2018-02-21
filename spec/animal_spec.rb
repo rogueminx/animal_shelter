@@ -47,15 +47,15 @@ describe(Animal) do
     end
   end
 
-  # describe('.sort_breed') do
-  #   it('returns a list of animal ids for a breed search term') do
-  #     first_animal = Animal.new({:animal_name => 'Scrappy', :gender => 'female', :animal_breed => 'mixed', :date => '2018-05-01', :animal_type => 'dog', :customer_id => nil})
-  #     first_animal.save
-  #     second_animal = Animal.new({:animal_name => 'Rock', :gender => 'male', :animal_breed => 'husky', :date => '2018-01-12', :animal_type => 'dog', :customer_id => nil})
-  #     second_animal.save
-  #     expect(Animal.sort_breed('husky')).to(eq([["Rock", "male", "husky"]]))
-  #   end
-  # end # sort_breed ID will later be used to populate a page with dogs that match these IDs
+  describe('.sort_breed') do
+    it('returns a list of animal ids for a breed search term') do
+      first_animal = Animal.new({:animal_name => 'Scrappy', :gender => 'female', :animal_breed => 'mixed', :date => '2018-05-01', :animal_type => 'dog', :id => nil})
+      first_animal.save
+      second_animal = Animal.new({:animal_name => 'Rock', :gender => 'male', :animal_breed => 'husky', :date => '2018-01-12', :animal_type => 'dog', :id => nil})
+      second_animal.save
+      expect(second_animal.sort_breed('husky')).to(eq([second_animal]))
+    end
+  end
 
 
 end #Animal
