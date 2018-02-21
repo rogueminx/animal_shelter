@@ -33,7 +33,7 @@ describe(Animal) do
       animal_one.save()
       expect(animal_one.id()).to(be_an_instance_of(Fixnum)) # don't know what specific ID the database will assign it, so all we can do is check to make sure the ID is an Integer/Fixnum(at home). Works together with the save method.
     end
-  end
+  end #id
 
   describe('#sort_type') do
     it('returns a list of animals according to animal type (dog/cat/etc)') do

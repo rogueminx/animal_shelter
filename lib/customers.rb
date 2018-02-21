@@ -18,9 +18,7 @@ class Customers
   def save
     result = DB.exec("INSERT INTO customers(customer_name, phone, animal_type_preference, breed_preference) VALUES ('#{@customer_name}', '#{@phone}', '#{@animal_type_preference}', '#{@breed_preference}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
-  end #save
-  #We can insert a record into the database and have the ID of that new entry be returned to us by adding RETURNING id to the end of our INSERT command.
-  #The pg gem always returns information in an array (technically it's not an array but it behaves more or less like one). When we save a list and want to get its ID, we have to use the first() method to take it out of the array. Then we can use the fetch method to select the ID.
+  end
 
   def self.all()
     returned_customers = DB.exec("SELECT * FROM customers;")
@@ -36,8 +34,19 @@ class Customers
     customers
   end #all
 
-  def breed_preference(preference)
-
-  end
+  def return_breed_preference(preference)
+    @preference = preference
+    returned_customers = []
+    current_results = DB.exec("SELECT * FROM customers WHERE breed_preference = '#{@preference}';")
+    current_results.each() do |item|
+      customer_name = item.fetch("customer_name")
+      phone = item.fetch("phone")
+      animal_type_preference = item.fetch("animal_type_preference")
+      breed_preference = item.fetch("breed_preference")
+      id = item.fetch("id").to_i()
+      returned_customers.push(Customers.new({:customer_name => customer_name, :phone => phone, :animal_type_preference => animal_type_preference, :breed_preference => breed_preference, :id => id}))
+    end
+    returned_customers
+  end #breed_preference
 
 end #Customer

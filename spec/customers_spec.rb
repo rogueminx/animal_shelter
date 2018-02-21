@@ -26,7 +26,15 @@ describe(Customers) do
     end
   end # save
 
-  describe('#breed_preference') do
+  describe("#id") do
+    it("sets its ID when you save it") do
+      first_customer = Customers.new({:customer_name => 'Susan', :phone => '503-333-3434', :animal_type_preference => 'dog', :breed_preference => 'Rottweiler', :id=> nil})
+      first_customer.save
+      expect(first_customer.id()).to(be_an_instance_of(Fixnum)) # don't know what specific ID the database will assign it, so all we can do is check to make sure the ID is an Integer/Fixnum(at home). Works together with the save method.
+    end
+  end #id
+
+  describe('#return_breed_preference') do
     it('returns owners with a certain breed preference') do
       first_customer = Customers.new({:customer_name => 'Susan', :phone => '503-333-3434', :animal_type_preference => 'dog', :breed_preference => 'Rottweiler', :id=> nil})
       first_customer.save
@@ -34,8 +42,8 @@ describe(Customers) do
       second_customer.save
       third_customer = Customers.new({:customer_name => 'Bill', :phone => '612-607-8921', :animal_type_preference => 'dog', :breed_preference => 'Rottweiler', :id=> nil})
       third_customer.save
-      expect(third_customer.breed_preference('Rottweiler')).to(eq([first_customer, third_customer]))
+      expect(third_customer.return_breed_preference('Rottweiler')).to(eq([first_customer, third_customer]))
     end
-  end # save
+  end # breed_preference
 
 end #Customers
