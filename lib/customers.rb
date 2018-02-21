@@ -38,6 +38,9 @@ class Customers
   end #all
 
   def save
-    DB.exec("INSERT INTO customers(customer_name, phone, animal_type_preference, breed_preference, id) VALUES ('#{@customer_name}', '#{@phone}', '#{@animal_type_preference}', '#{@breed_preference}', #{@id});")
+    result = DB.exec("INSERT INTO customers(customer_name, phone, animal_type_preference, breed_preference, id) VALUES ('#{@customer_name}', '#{@phone}', '#{@animal_type_preference}', '#{@breed_preference}', #{@id}) RETURNING id;")
+    @id = result.first().fetch("id").to_i()
   end #save
+  #We can insert a record into the database and have the ID of that new entry be returned to us by adding RETURNING id to the end of our INSERT command.
+  #The pg gem always returns information in an array (technically it's not an array but it behaves more or less like one). When we save a list and want to get its ID, we have to use the first() method to take it out of the array. Then we can use the fetch method to select the ID.
 end #Customer

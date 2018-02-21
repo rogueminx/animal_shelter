@@ -1,6 +1,6 @@
 class Animal
 
-  attr_reader(:animal_name, :date, :customer_id, :gender, :animal_breed, :animal_type)
+  attr_reader(:animal_name, :date, :gender, :animal_breed, :animal_type, :id)
 
   def initialize(attributes)
     @animal_name = attributes.fetch(:animal_name)
@@ -8,19 +8,26 @@ class Animal
     @animal_breed = attributes.fetch(:animal_breed)
     @date = attributes.fetch(:date)
     @animal_type = attributes.fetch(:animal_type)
-    @customer_id = attributes.fetch(:customer_id)
-  end
+    @id = attributes.fetch(:id)
+  end #initialize
 
   def ==(another_pet)
-    self.animal_breed().==(another_pet.animal_breed()).&(self.customer_id().==(another_pet.customer_id()))
-  end
+    self.animal_name().==(another_pet.animal_name()).&(self.id().==(another_pet.id())).&(self.gender().==(another_pet.gender())).&(self.animal_breed().==(another_pet.animal_breed())).&(self.date().==(another_pet.date())).&(self.animal_type().==(another_pet.animal_type()))
+  end #==
+
+  def save
+    result = DB.exec("INSERT INTO animal (animal_name, gender, animal_breed, date, animal_type) VALUES ('#{@animal_name}', '#{@gender}', '#{@animal_breed}', '#{@date}', '#{@animal_type}') RETURNING id;")
+    @id = result.first().fetch("id").to_i()
+  end #save
+  #We can insert a record into the database and have the ID of that new entry be returned to us by adding RETURNING id to the end of our INSERT command.
+  #The pg gem always returns information in an array (technically it's not an array but it behaves more or less like one). When we save a list and want to get its ID, we have to use the first() method to take it out of the array. Then we can use the fetch method to select the ID.
 
   def animal_name
-    @name
+    @animal_name
   end
 
-  def customer_id
-    @customer_id
+  def id
+    @id
   end
 
   def self.all()
@@ -32,28 +39,46 @@ class Animal
       animal_breed = item.fetch("animal_breed")
       date = item.fetch("date")
       animal_type = item.fetch("animal_type")
-      customer_id = item.fetch("customer_id").to_i() # The information comes out of the database as a string.
-      animals.push(Animal.new({:animal_name => animal_name, :gender => gender, :animal_breed => animal_breed, :date => date, :animal_type => animal_type, :customer_id => customer_id}))
+      id = item.fetch("id").to_i()
+      animals.push(Animal.new({:animal_name => animal_name, :gender => gender, :animal_breed => animal_breed, :date => date, :animal_type => animal_type, :id => id}))
     end
     animals
-  end
+  end #all
 
-  def save
-    DB.exec("INSERT INTO animal (animal_name, gender, animal_breed, date, animal_type, customer_id) VALUES ('#{@animal_name}', '#{@gender}', '#{@animal_breed}', '#{@date}', '#{@animal_type}', #{@customer_id});")
-  end
-
-  def self.sort_breed(breed)
-    @breed = breed
-    return_array = []
-    return_values = DB.exec("SELECT animal_name, gender, animal_breed FROM animal WHERE animal_breed = 'husky';").values
-    return_values.each() do |item|
+  def sort_type(type)
+    @animal_type = type
+    returned_animals = []
+    all_animals = DB.exec("SELECT * FROM animal WHERE animal_type = '#{@animal_type}';")
+    all_animals.each() do |item|
       animal_name = item.fetch("animal_name")
       gender = item.fetch("gender")
       animal_breed = item.fetch("animal_breed")
-
-    return_array.push(animal_name, gender, animal_breed)
+      date = item.fetch("date")
+      animal_type = item.fetch("animal_type")
+      id = item.fetch("id").to_i()
+      returned_animals.push(Animal.new({:animal_name => animal_name, :gender => gender, :animal_breed => animal_breed, :date => date, :animal_type => animal_type, :id => id}))
     end
-    return_array
-  end
+    binding.pry
+    returned_animals
+  end #sort_type
 
-end
+  #
+  # def self.sort_breed(breed)
+  #   @breed = breed
+  #   return_array = []
+  #   return_values = DB.exec("SELECT id FROM animal WHERE animal_breed = '#{@breed}';").values
+  #   @id = return_values.first().fetch("id").to_i()
+  #   return_values.each() do |item|
+  #     return_array.push(@id)
+  #   end
+  #   # return_values.each() do |item|
+  #   #   animal_name = item.fetch("animal_name")
+  #   #   gender = item.fetch("gender")
+  #   #   animal_breed = item.fetch("animal_breed")
+  #   #
+  #   # return_array.push(animal_name, gender, animal_breed)
+  #   # end
+  #   # return_array
+  # end # sort_breed
+
+end # ANIMAL
