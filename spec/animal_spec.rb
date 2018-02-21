@@ -71,13 +71,13 @@ describe(Animal) do
 
     describe('#sort_arrival') do
       it('returns a list of animals in the order that they arrive oldest arrival -> new') do
-        first_animal = Animal.new({:animal_name => 'Scrappy', :gender => 'female', :animal_breed => 'mixed', :date => '2017-12-12', :animal_type => 'dog', :id => nil})
+        first_animal = Animal.new({:animal_name => 'Scrappy', :gender => 'female', :animal_breed => 'mixed', :date => '2018-02-14', :animal_type => 'dog', :id => nil})
         first_animal.save
-        second_animal = Animal.new({:animal_name => 'Rock', :gender => 'male', :animal_breed => 'husky', :date => '2018-02-14', :animal_type => 'dog', :id => nil})
+        second_animal = Animal.new({:animal_name => 'Rock', :gender => 'male', :animal_breed => 'husky', :date => '2017-12-12', :animal_type => 'dog', :id => nil})
         second_animal.save
         third_animal = Animal.new({:animal_name => 'Banana', :gender => 'female', :animal_breed => 'Paint', :date => '2018-01-14', :animal_type => 'horse', :id => nil})
         third_animal.save
-        expect(third_animal.sort_az()).to(eq([second_animal, third_animal, last_animal]))
+        expect(third_animal.sort_arrival()).to(eq([second_animal, third_animal, first_animal]))
       end
     end #sort_arrival
 
