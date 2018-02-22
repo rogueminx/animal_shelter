@@ -35,7 +35,7 @@ describe(Animal) do
       second_animal.save
       expect(Animal.find(second_animal.id())).to(eq([second_animal]))
     end
-  end # save
+  end # find
 
 
   describe("#id") do

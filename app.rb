@@ -10,3 +10,11 @@ DB = PG.connect({:dbname => "animal_shelter"})
 get('/') do
   erb(:index)
 end
+
+get('/customers') do
+  erb(:customer)
+end
+
+get('/employees') do
+  erb(:employee)
+end
