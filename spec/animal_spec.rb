@@ -81,12 +81,12 @@ describe(Animal) do
       end
     end #sort_arrival
 
-    describe('#adopted_by') do
+    describe('#adopted') do
       it('adds the relevant customer id to an animal when adopted.') do
         first_animal = Animal.new({:animal_name => 'Scrappy', :gender => 'female', :animal_breed => 'mixed', :date => '2018-02-14', :animal_type => 'dog', :id => nil})
         first_animal.save
-        expect(first_animal.adopted_by(22)).to(eq({:animal_name => 'Scrappy', :gender => 'female', :animal_breed => 'mixed', :date => '2018-02-14', :animal_type => 'dog', :id => nil, :customer_id => 22}))
+        expect(first_animal.adopted(22, first_animal.id)).to(eq([first_animal.id, 'Scrappy', 'female', 'mixed', '2018-02-14', 'dog', 22]))
       end
-    end #adopted_by
+    end #adopted_by - used .id method as an arguement input to get database generated id from the current save. 
 
 end #Animal

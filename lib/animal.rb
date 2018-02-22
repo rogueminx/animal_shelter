@@ -1,6 +1,7 @@
 class Animal
 
   attr_reader(:animal_name, :date, :gender, :animal_breed, :animal_type, :id)
+  attr_accessor(:customer_id)
 
   def initialize(attributes)
     @animal_name = attributes.fetch(:animal_name)
@@ -100,8 +101,23 @@ class Animal
     returned_animals
   end # sort_arrival
 
-  def adopted_by(customer_id)
-
-  end
+  def adopted(customer_id, pet_id)
+    @customer_id = customer_id
+    @pet_id = pet_id
+    DB.exec("UPDATE animal SET customer_id = '#{@customer_id}' WHERE id = '#{@pet_id}';")
+    result = DB.exec("SELECT * FROM animal WHERE id = #{@pet_id};")
+    updated_results = []
+    result.each() do |item|
+      animal_name = item.fetch("animal_name")
+      gender = item.fetch("gender")
+      animal_breed = item.fetch("animal_breed")
+      date = item.fetch("date")
+      animal_type = item.fetch("animal_type")
+      id = item.fetch("id").to_i()
+      customer_id = item.fetch("customer_id").to_i()
+      updated_results.push(id, animal_name, gender, animal_breed, date, animal_type, customer_id) #possible to do these with other methods? Am I generating new instances in the other methods above?
+    end
+    updated_results
+  end #adopted
 
 end # ANIMAL
