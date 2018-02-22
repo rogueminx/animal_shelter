@@ -26,6 +26,16 @@ describe(Customers) do
     end
   end # save
 
+  describe('.find') do
+    it("returns a customer by their ID number") do
+      first_customer = Customers.new({:customer_name => 'Susan', :phone => '503-333-3434', :animal_type_preference => 'dog', :breed_preference => 'Rottweiler', :id=> nil})
+      first_customer.save
+      second_customer = Customers.new({:customer_name => 'Penelope', :phone => '412-542-1124', :animal_type_preference => 'cat', :breed_preference => 'Persian', :id=> nil})
+      second_customer.save
+      expect(Customers.find(second_customer.id())).to(eq([second_customer]))
+    end
+  end # find
+
   describe("#id") do
     it("sets its ID when you save it") do
       first_customer = Customers.new({:customer_name => 'Susan', :phone => '503-333-3434', :animal_type_preference => 'dog', :breed_preference => 'Rottweiler', :id=> nil})
