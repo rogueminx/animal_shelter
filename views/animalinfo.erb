@@ -1,6 +1,16 @@
-<!-- <h1><%= @animal.animal_name %></h1> -->
+<h1>Meet <%= @animal.animal_name %>!</h1>
 
+<p>A perfectly lovely, adoptable creature looking for a new home! Here is a little more info on <%= @animal.animal_name %>:</p>
 
-<a href="/">Main Page</a>
-<a href="/employees">Employee Page</a>
+<ul>
+  <li><%= @animal.animal_name %> is a <%= @animal.animal_type %>.</li>
+  <li><%= @animal.animal_name %> is a <%= @animal.animal_breed %>.</li>
+  <li><%= @animal.animal_name %>'s gender is <%= @animal.gender %>.</li>
+  <li><%= @animal.animal_name %> date of admittance was: <%= @animal.date %>.</li>
+</ul>
+
+<p>
+<a href="/">Main Page</a> -
+<a href="/employees">Employee Page</a> -
 <a href="/customers">Customer Page</a>
+</p>

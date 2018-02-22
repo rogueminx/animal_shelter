@@ -58,6 +58,11 @@ get("/animals/:id") do
   erb(:animalinfo)
 end
 
+get("/customers/:id") do
+  @customer = Customers.find(params.fetch("id").to_i())
+  erb(:customerinfo)
+end
+
 post("/addanimal") do
   animal_name = params.fetch("animal_name")
   gender = params.fetch("gender")
@@ -69,4 +74,16 @@ post("/addanimal") do
   @animalname = animal.animal_name
   @animalid = animal.id
   erb(:addanimal)
+end
+
+post("/addcustomer") do
+  customer_name = params.fetch("customer_name")
+  phone = params.fetch("phone")
+  animal_type_preference = params.fetch("animal_type_preference")
+  breed_preference = params.fetch("breed_preference")
+  customer = Customers.new({:customer_name => customer_name, :phone => phone, :animal_type_preference => animal_type_preference, :breed_preference => breed_preference, :id => nil})
+  customer.save()
+  @customername = customer.customer_name
+  @customerid = customer.id
+  erb(:addcustomer)
 end

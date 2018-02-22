@@ -32,7 +32,7 @@ describe(Customers) do
       first_customer.save
       second_customer = Customers.new({:customer_name => 'Penelope', :phone => '412-542-1124', :animal_type_preference => 'cat', :breed_preference => 'Persian', :id=> nil})
       second_customer.save
-      expect(Customers.find(second_customer.id())).to(eq([second_customer]))
+      expect(Customers.find(second_customer.id())).to(eq(second_customer))
     end
   end # find
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add an Customer</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+  </head>
+  <body>
+    <div class="container">
+    <h1>Welcome to an Animal Shelter of Some Sort!</h1>
+    <hr>
+    <p>Use the form below to add a new customer to the database.</p>
+      <div class="form">
+        <form action="/addcustomer" method="post">
+          <label for="customer_name">Customer's name:</label>
+          <input id="customer_name" name="customer_name" type="text">
+          <p></p>
+          <label for="phone">Phone number:</label>
+          <input id="phone" name="phone" type="text">
+          <p></p>
+          <label for="animal_type_preference">Animal type preference:</label>
+          <input id="animal_type_preference" name="animal_type_preference" type="text">
+          <p></p>
+          <label for="breed_preference">Animal breed preference:</label>
+          <input id="breed_preference" name="breed_preference" type="text">
+          <p></p>
+          <button type="submit">Add Customer!</button>
+        </form>
+      </div>
+      <p>
+      <h5><% if @customername != nil %>
+        <p>Success! <a href="/customers/<%= @customerid %>"><%= @customername %></a> has been saved to the database.</p>
+        <% else %>
+        <p>There have been no customers saved this session!</p>
+      <% end %></h5>
+      </p>
+    </div>
+  </body>
+</html>
