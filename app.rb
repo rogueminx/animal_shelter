@@ -7,6 +7,6 @@ require("pg")
 
 DB = PG.connect({:dbname => "animal_shelter"})
 
-# get('/') do
-#   erb()
-# end
+get('/') do
+  erb(:index)
+end

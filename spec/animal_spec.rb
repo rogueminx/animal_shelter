@@ -27,6 +27,17 @@ describe(Animal) do
     end
   end # save
 
+  describe('.find') do
+    it("returns a pet by its ID number") do
+      first_animal = Animal.new({:animal_name => 'Scrappy', :gender => 'female', :animal_breed => 'mixed', :date => '2018-05-01', :animal_type => 'dog', :id => nil})
+      first_animal.save
+      second_animal = Animal.new({:animal_name => 'Rock', :gender => 'male', :animal_breed => 'husky', :date => '2018-01-12', :animal_type => 'dog', :id => nil})
+      second_animal.save
+      expect(Animal.find(second_animal.id())).to(eq([second_animal]))
+    end
+  end # save
+
+
   describe("#id") do
     it("sets its ID when you save it") do
       animal_one = Animal.new({:animal_name => 'Scrappy', :gender => 'female', :animal_breed => 'mixed', :date => '2018-05-01', :animal_type => 'dog', :id => nil})
@@ -87,6 +98,6 @@ describe(Animal) do
         first_animal.save
         expect(first_animal.adopted(22, first_animal.id)).to(eq([first_animal.id, 'Scrappy', 'female', 'mixed', '2018-02-14', 'dog', 22]))
       end
-    end #adopted_by - used .id method as an arguement input to get database generated id from the current save. 
+    end #adopted_by - used .id method as an arguement input to get database generated id from the current save.
 
 end #Animal

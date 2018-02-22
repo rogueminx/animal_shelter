@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.3
--- Dumped by pg_dump version 9.6.3
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -35,24 +35,24 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: animal; Type: TABLE; Schema: public; Owner: Guest
+-- Name: animal; Type: TABLE; Schema: public; Owner: annamariecooper
 --
 
 CREATE TABLE animal (
     id integer NOT NULL,
     animal_name character varying,
     gender character varying,
-    date timestamp without time zone,
+    date date,
     animal_type character varying,
     animal_breed character varying,
     customer_id integer
 );
 
 
-ALTER TABLE animal OWNER TO "Guest";
+ALTER TABLE animal OWNER TO annamariecooper;
 
 --
--- Name: animal_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+-- Name: animal_id_seq; Type: SEQUENCE; Schema: public; Owner: annamariecooper
 --
 
 CREATE SEQUENCE animal_id_seq
@@ -63,17 +63,17 @@ CREATE SEQUENCE animal_id_seq
     CACHE 1;
 
 
-ALTER TABLE animal_id_seq OWNER TO "Guest";
+ALTER TABLE animal_id_seq OWNER TO annamariecooper;
 
 --
--- Name: animal_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+-- Name: animal_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: annamariecooper
 --
 
 ALTER SEQUENCE animal_id_seq OWNED BY animal.id;
 
 
 --
--- Name: customers; Type: TABLE; Schema: public; Owner: Guest
+-- Name: customers; Type: TABLE; Schema: public; Owner: annamariecooper
 --
 
 CREATE TABLE customers (
@@ -85,10 +85,10 @@ CREATE TABLE customers (
 );
 
 
-ALTER TABLE customers OWNER TO "Guest";
+ALTER TABLE customers OWNER TO annamariecooper;
 
 --
--- Name: customers_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+-- Name: customers_id_seq; Type: SEQUENCE; Schema: public; Owner: annamariecooper
 --
 
 CREATE SEQUENCE customers_id_seq
@@ -99,31 +99,31 @@ CREATE SEQUENCE customers_id_seq
     CACHE 1;
 
 
-ALTER TABLE customers_id_seq OWNER TO "Guest";
+ALTER TABLE customers_id_seq OWNER TO annamariecooper;
 
 --
--- Name: customers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+-- Name: customers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: annamariecooper
 --
 
 ALTER SEQUENCE customers_id_seq OWNED BY customers.id;
 
 
 --
--- Name: animal id; Type: DEFAULT; Schema: public; Owner: Guest
+-- Name: animal id; Type: DEFAULT; Schema: public; Owner: annamariecooper
 --
 
 ALTER TABLE ONLY animal ALTER COLUMN id SET DEFAULT nextval('animal_id_seq'::regclass);
 
 
 --
--- Name: customers id; Type: DEFAULT; Schema: public; Owner: Guest
+-- Name: customers id; Type: DEFAULT; Schema: public; Owner: annamariecooper
 --
 
 ALTER TABLE ONLY customers ALTER COLUMN id SET DEFAULT nextval('customers_id_seq'::regclass);
 
 
 --
--- Data for Name: animal; Type: TABLE DATA; Schema: public; Owner: Guest
+-- Data for Name: animal; Type: TABLE DATA; Schema: public; Owner: annamariecooper
 --
 
 COPY animal (id, animal_name, gender, date, animal_type, animal_breed, customer_id) FROM stdin;
@@ -131,14 +131,7 @@ COPY animal (id, animal_name, gender, date, animal_type, animal_breed, customer_
 
 
 --
--- Name: animal_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
---
-
-SELECT pg_catalog.setval('animal_id_seq', 100, true);
-
-
---
--- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: Guest
+-- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: annamariecooper
 --
 
 COPY customers (id, customer_name, phone, animal_type_preference, breed_preference) FROM stdin;
@@ -146,14 +139,21 @@ COPY customers (id, customer_name, phone, animal_type_preference, breed_preferen
 
 
 --
--- Name: customers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+-- Name: animal_id_seq; Type: SEQUENCE SET; Schema: public; Owner: annamariecooper
+--
+
+SELECT pg_catalog.setval('animal_id_seq', 127, true);
+
+
+--
+-- Name: customers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: annamariecooper
 --
 
 SELECT pg_catalog.setval('customers_id_seq', 1, false);
 
 
 --
--- Name: animal animal_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest
+-- Name: animal animal_pkey; Type: CONSTRAINT; Schema: public; Owner: annamariecooper
 --
 
 ALTER TABLE ONLY animal
@@ -161,7 +161,7 @@ ALTER TABLE ONLY animal
 
 
 --
--- Name: customers customers_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest
+-- Name: customers customers_pkey; Type: CONSTRAINT; Schema: public; Owner: annamariecooper
 --
 
 ALTER TABLE ONLY customers
