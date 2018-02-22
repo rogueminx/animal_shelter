@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add an Animal</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+  </head>
+  <body>
+    <div class="container">
+    <h1>Welcome to an Animal Shelter of Some Sort!</h1>
+    <hr>
+    <p>Use the form below to add a new animal to the database.</p>
+      <div class="form">
+        <form action="/addanimal" method="post">
+          <label for="animal_name">Animal's name:</label>
+          <input id="animal_name" name="animal_name" type="text">
+          <p></p>
+          <label for="animal_type">Animal's type:</label>
+          <input id="animal_type" name="animal_type" type="text">
+          <p></p>
+          <label for="gender">Animal's gender:</label>
+          <input id="gender" name="gender" type="text">
+          <p></p>
+          <label for="animal_breed">Animal's breed:</label>
+          <input id="animal_breed" name="animal_breed" type="text">
+          <p></p>
+          <label for="date">Current Date (year/month/day):</label>
+          <input id="date" name="date" type="text">
+          <p></p>
+          <button type="submit">Add Animal!</button>
+        </form>
+      </div>
+      <% if @animalname != nil %>
+        <p>Success! <a href="/animals/<%= @animalid %>"><%= @animalname %></a> has been saved to the database.</p>
+        <% else %>
+        <p>There have been no animals saved this session!</p>
+      <% end %>
+    </div>
+  </body>
+</html>

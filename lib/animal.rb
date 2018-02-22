@@ -24,17 +24,13 @@ class Animal
   #The pg gem always returns information in an array (technically it's not an array but it behaves more or less like one). When we save a list and want to get its ID, we have to use the first() method to take it out of the array. Then we can use the fetch method to select the ID.
 
   def self.find(id)
-    returned_animals = DB.exec("SELECT * FROM animal WHERE id = #{id};")
-    found_animal = []
-    returned_animals.each() do |item|
-      animal_name = item.fetch("animal_name")
-      gender = item.fetch("gender")
-      animal_breed = item.fetch("animal_breed")
-      date = item.fetch("date")
-      animal_type = item.fetch("animal_type")
-      found_animal.push(Animal.new({:animal_name => animal_name, :gender => gender, :animal_breed => animal_breed, :date => date, :animal_type => animal_type, :id => id}))
+    found_animal = nil
+    Animal.all().each do |item|
+      if item.id().==(id)
+        found_animal = item
+      end
     end
-  found_animal
+    found_animal
   end
 
   def self.all()
