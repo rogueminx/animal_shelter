@@ -50,17 +50,17 @@ class Customers
   end #breed_preference
 
   def self.find(id)
-  #   returned_customers = DB.exec("SELECT * FROM customers WHERE id = #{id};")
-  #   found_customer = []
-  #   returned_customers.each() do |item|
-  #     customer_name = item.fetch("customer_name")
-  #     phone = item.fetch("phone")
-  #     animal_type_preference = item.fetch("animal_type_preference")
-  #     breed_preference = item.fetch("breed_preference")
-  #     id = item.fetch("id").to_i()
-  #     returned_customers.push(Customers.new({:customer_name => customer_name, :phone => phone, :animal_type_preference => animal_type_preference, :breed_preference => breed_preference, :id => id}))
-  #   end
-  # found_customer
+    returned_customers = DB.exec("SELECT * FROM customers WHERE id = #{id};")
+    found_customer = []
+    returned_customers.each() do |item|
+      customer_name = item.fetch("customer_name")
+      phone = item.fetch("phone")
+      animal_type_preference = item.fetch("animal_type_preference")
+      breed_preference = item.fetch("breed_preference")
+      id = item.fetch("id").to_i()
+      found_customer.push(Customers.new({:customer_name => customer_name, :phone => phone, :animal_type_preference => animal_type_preference, :breed_preference => breed_preference, :id => id}))
+    end
+  found_customer
   end
 
   def delete
