@@ -134,4 +134,8 @@ class Animal
     updated_results
   end #adopted
 
+  def delete
+    DB.exec("DELETE FROM animal WHERE id = #{self.id()};")
+  end
+
 end # ANIMAL

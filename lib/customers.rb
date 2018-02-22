@@ -49,4 +49,8 @@ class Customers
     returned_customers
   end #breed_preference
 
+  def delete
+    DB.exec("DELETE FROM cusomters WHERE id = #{self.id()};")
+  end
+
 end #Customer
