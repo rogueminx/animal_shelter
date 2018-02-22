@@ -8,6 +8,7 @@
     <div class="container">
     <h1>Welcome to an Animal Shelter of Some Sort!</h1>
 
+    <% if @animals.any?() %>
     <p>We have lots of sweet dogs, cats and lots of other animals that need homes. There are three different ways to sort through our animals to see what's available. </p>
 
       <div class="row">
@@ -24,6 +25,10 @@
         </h5><a href="/customers/byanimaltype">View All Pets!</a></h5>
         </div>
       </div>
+
+      <% else %>
+      <p>There are no animals available! They have all found new homes!</p>
+      <% end %>
     </div>
   </body>
 </html>

@@ -12,6 +12,7 @@ get('/') do
 end
 
 get('/customers') do
+  @animals = Animal.all()
   erb(:customer)
 end
 

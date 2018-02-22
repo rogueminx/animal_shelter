@@ -4,7 +4,7 @@ Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
 # describe('', {:type => :feature}) do
-#   it('') do
+#   it('shows no animal list if ') do
 #     visit('')
 #     fill_in('', :with => '')
 #     click_button('')
