@@ -18,7 +18,8 @@ get('/customers') do
 end
 
 get('/customers/athroughz') do
-  erb(:customer/athroughz)
+  @animals = Animal.sort_az()
+  erb(:athroughz)
 end
 
 get('/customers/byanimaltype') do
@@ -42,6 +43,7 @@ get('/employees/addcustomer') do
 end
 
 get('/employees/allanimals') do
+  @animals = Animal.sort_arrival()
   erb(:allanimals)
 end
 
@@ -86,4 +88,11 @@ post("/addcustomer") do
   @customername = customer.customer_name
   @customerid = customer.id
   erb(:addcustomer)
+end
+
+delete("/animals/:id") do
+  @animal = Animal.find(params.fetch("id").to_i())
+  @animal.delete()
+  @animals = Animal.all()
+  erb(:allanimals)
 end

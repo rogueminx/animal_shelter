@@ -1,0 +1,13 @@
+<h3>Animals for Adoption</h3>
+<p>Here are all of the animals currently available in the shelter listed in the order they arrived. </p>
+<ul>
+  <% @animals.each do |animal| %>
+    <li><a href="/animals/<%= animal.id() %>"><%= animal.animal_name() %></a></li>
+  <% end %>
+</ul>
+
+<p>
+<a href="/">Main Page</a> -
+<a href="/employees">Employee Page</a> -
+<a href="/customers">Customer Page</a>
+</p>

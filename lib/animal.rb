@@ -81,7 +81,7 @@ class Animal
     returned_animals
   end # sort_breed
 
-  def sort_az()
+  def self.sort_az()
     returned_animals = []
     all_animals = DB.exec("SELECT * FROM animal ORDER BY animal_name ASC;")
     all_animals.each() do |item|
@@ -96,7 +96,7 @@ class Animal
     returned_animals
   end # sort_az
 
-  def sort_arrival()
+  def self.sort_arrival()
     returned_animals = []
     all_animals = DB.exec("SELECT * FROM animal ORDER BY date;")
     all_animals.each() do |item|

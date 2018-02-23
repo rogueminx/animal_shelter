@@ -8,7 +8,12 @@
   <li><%= @animal.animal_name %>'s gender is <%= @animal.gender %>.</li>
   <li><%= @animal.animal_name %> date of admittance was: <%= @animal.date %>.</li>
 </ul>
-
+<p>
+<form action="/animals/<%= @animal.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit">Delete this Animal</button>
+</form>
+</p>
 <p>
 <a href="/">Main Page</a> -
 <a href="/employees">Employee Page</a> -
