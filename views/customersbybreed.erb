@@ -1,0 +1,28 @@
+<div class="container">
+  <h3>Customer Search</h3>
+  <p>There are a lot of customers looking for new pets. Search for them by their preferred breed.</p>
+  <div class="form">
+    <form action="/bybreed" method="post">
+      <% @customers.each() do |customer| %>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="customer_ids[]" value="<%= customer.id() %>"><%= customer.breed_preference() %>
+          </label>
+        </div>
+      <% end %>
+      <p></p>
+      <button type="submit">Who likes this breed?</button>
+      </form>
+    </div>
+  <% @customers.each do |customer| %>
+    <li><a href="/customers/<%= customer.id() %>"><%= customer.customer_name() %></a></li>
+  <% end %>
+
+
+  <hr>
+  <p>
+  <a href="/">Main Page</a> -
+  <a href="/employees">Employee Page</a> -
+  <a href="/customers">Customer Page</a>
+  </p>
+</div>

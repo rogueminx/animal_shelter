@@ -56,4 +56,16 @@ describe(Customers) do
     end
   end # breed_preference
 
+  describe('#breed_choices') do
+    it('returns a list of potential owners distinct breed preferences') do
+      first_customer = Customers.new({:customer_name => 'Susan', :phone => '503-333-3434', :animal_type_preference => 'dog', :breed_preference => 'Rottweiler', :id=> nil})
+      first_customer.save
+      second_customer = Customers.new({:customer_name => 'Penelope', :phone => '412-542-1124', :animal_type_preference => 'cat', :breed_preference => 'Persian', :id=> nil})
+      second_customer.save
+      third_customer = Customers.new({:customer_name => 'Bill', :phone => '612-607-8921', :animal_type_preference => 'dog', :breed_preference => 'Rottweiler', :id=> nil})
+      third_customer.save
+      expect(third_customer.breed_choices()).to(eq([second_customer.breed_preference, first_customer.breed_preference]))
+    end
+  end
+
 end #Customers

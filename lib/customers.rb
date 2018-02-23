@@ -34,6 +34,16 @@ class Customers
     customers
   end #all
 
+  def breed_choices
+    breed_choices = []
+    current_results = DB.exec("SELECT DISTINCT breed_preference FROM customers;")
+    current_results.each() do |item|
+      breed_preference = item.fetch("breed_preference")
+      breed_choices.push(breed_preference)
+    end
+    breed_choices
+  end
+
   def return_breed_preference(preference)
     @preference = preference
     returned_customers = []

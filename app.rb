@@ -22,10 +22,6 @@ get('/customers/athroughz') do
   erb(:athroughz)
 end
 
-get('/customers/byanimaltype') do
-  erb(:byanimaltype)
-end
-
 get('/customers/animalsbybreed') do
   erb(:animalsbybreed)
 end
@@ -48,6 +44,7 @@ get('/employees/allanimals') do
 end
 
 get('/employees/customersbybreed') do
+  @customers = Customers.all()
   erb(:customersbybreed)
 end
 
@@ -93,6 +90,6 @@ end
 delete("/animals/:id") do
   @animal = Animal.find(params.fetch("id").to_i())
   @animal.delete()
-  @animals = Animal.all()
+  @animals = Animal.all() #necessary to reset for new page after delete?
   erb(:allanimals)
 end
